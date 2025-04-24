@@ -6,3 +6,4 @@ __pycache__/
 
 # Ignore IDE/workspace files
 *.code-workspace
+dog_match_model.h5
