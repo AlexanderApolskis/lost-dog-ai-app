@@ -1,0 +1,8 @@
+# Ignore virtual environments and system files
+venv/
+.DS_Store
+__pycache__/
+*.pyc
+
+# Ignore IDE/workspace files
+*.code-workspace
