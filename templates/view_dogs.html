@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Lost/Found Dogs</title>
+    <style>
+        body {
+            background-color: #f0f5fa;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .nav-bar {
+            margin-top: 20px;
+        }
+        .nav-bar a {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            margin: 0 5px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .filter-buttons {
+            margin: 20px;
+        }
+        .filter-buttons button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .filter-buttons button.all {
+            background-color: #007bff;
+        }
+        .dog-card {
+            background-color: white;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: inline-block;
+            vertical-align: top;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
+            position: relative;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .dog-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+        .lost-badge {
+            color: white;
+            background-color: red;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .found-badge {
+            color: white;
+            background-color: green;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .reunited-badge {
+            color: white;
+            background-color: gold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .new-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+        }
+        .reunite-button {
+            background-color: gold;
+            color: black;
+            border: none;
+            padding: 8px 12px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #no-results {
+            display: none;
+            font-size: 18px;
+            color: gray;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-bar">
+        <a href="/">Home</a>
+        <a href="/post_dog_form">Post a Dog</a>
+        <a href="/view_shelters">View Shelters</a>
+    </div>
+
+    <h1>All Lost/Found Dogs</h1>
+
+    <div class="filter-buttons">
+        <button class="all" onclick="filterDogs('All')">All</button>
+        <button onclick="filterDogs('Lost')">Lost</button>
+        <button onclick="filterDogs('Found')">Found</button>
+    </div>
+
+    <div id="dogs-container">
+        {% for post in posts %}
+        <div class="dog-card" data-status="{{ post['dog_status'] }}">
+            
+            {% if post.is_new %}
+                <div class="new-badge">NEW</div>
+            {% endif %}
+
+            {% if post.get('dog_status') == 'Lost' %}
+                <div class="lost-badge">LOST</div>
+            {% elif post.get('dog_status') == 'Found' %}
+                <div class="found-badge">FOUND</div>
+            {% elif post.get('dog_status') == 'Reunited' %}
+                <div class="reunited-badge">🎉 REUNITED 🎉</div>
+            {% endif %}
+
+            {% if post.get('dog_image_file') %}
+                <img src="{{ url_for('static', filename='uploads/' ~ post['dog_image_file']) }}" alt="Dog Image" class="dog-image">
+            {% elif post.get('dog_image_url') %}
+                <img src="{{ post['dog_image_url'] }}" alt="Dog Image" class="dog-image">
+            {% endif %}
+
+            <h2>{{ post['dog_name'] }}</h2>
+            <p>{{ post['description'] }}</p>
+            <p><strong>Location:</strong> {{ post['location'] }}</p>
+            <p><strong>City:</strong> {{ post['city'] }}</p>
+            <p><strong>Contact:</strong> {{ post['contact_info'] }}</p>
+            <p><strong>Date Posted:</strong> {{ post['date_posted'] }}</p>
+
+            {% if post.get('is_shelter_post') %}
+                <p><em>Posted by Shelter: {{ post['shelter_name'] }}</em></p>
+                {% if post.get('shelter_logo_url') %}
+                    <img src="{{ post['shelter_logo_url'] }}" alt="Shelter Logo" width="100">
+                {% endif %}
+                <p>Hours: {{ post['hours_of_operation'] }}</p>
+            {% endif %}
+
+            {% if post.get('dog_status') == 'Lost' %}
+                <form action="/mark_reunited/{{ post['dog_name'] }}" method="post">
+                    <button type="submit" class="reunite-button">Mark as Reunited 🎉</button>
+                </form>
+            {% endif %}
+
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="no-results">
+        🐾 No dogs found matching your search.
+    </div>
+
+    <script>
+        function filterDogs(status) {
+            const cards = document.querySelectorAll('.dog-card');
+            const noResults = document.getElementById('no-results');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const dogStatus = card.getAttribute('data-status');
+                if (status === 'All' || dogStatus === status) {
+                    card.style.display = 'inline-block';
+                    card.style.animation = 'fadeIn 0.8s ease forwards';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (visibleCount === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>

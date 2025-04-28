@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Success Stories 🎉</title>
+    <style>
+        body {
+            background-color: #f0fff0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        .nav-bar {
+            margin-top: 20px;
+        }
+        .nav-bar a {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            margin: 0 5px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .dog-card {
+            background-color: white;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 15px;
+            width: 300px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            display: inline-block;
+            vertical-align: top;
+            position: relative;
+        }
+        .dog-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .reunited-badge {
+            color: white;
+            background-color: gold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-bar">
+        <a href="/">Home</a>
+        <a href="/view_dogs">View Lost/Found Dogs</a>
+        <a href="/success_stories">Success Stories</a>
+    </div>
+
+    <h1>🎉 Reunited Dogs 🎉</h1>
+    <p>These amazing dogs found their way home. 🐾</p>
+
+    <div id="dogs-container">
+        {% for post in posts %}
+        <div class="dog-card">
+            
+            <div class="reunited-badge">🎉 REUNITED 🎉</div>
+
+            {% if post.get('dog_image_file') %}
+                <img src="{{ url_for('static', filename='uploads/' ~ post['dog_image_file']) }}" alt="Dog Image" class="dog-image">
+            {% elif post.get('dog_image_url') %}
+                <img src="{{ post['dog_image_url'] }}" alt="Dog Image" class="dog-image">
+            {% endif %}
+
+            <h2>{{ post['dog_name'] }}</h2>
+            <p><strong>Location:</strong> {{ post['location'] }}</p>
+            <p><strong>City:</strong> {{ post['city'] }}</p>
+            <p><strong>Contact:</strong> {{ post['contact_info'] }}</p>
+
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- CONFETTI SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        function launchConfetti() {
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                var particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { 
+                    particleCount, 
+                    origin: { x: randomInRange(0.1, 0.9), y: Math.random() - 0.2 }
+                }));
+            }, 250);
+        }
+
+        window.onload = launchConfetti;
+    </script>
+
+</body>
+</html>

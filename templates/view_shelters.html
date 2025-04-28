@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nearby Shelters</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <style>
+        .dog-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px;
+            margin: 20px;
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        body {
+            background-color: #f0f8ff;
+            text-align: center;
+        }
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            font-size: 14px;
+        }
+        #searchInput {
+            width: 300px;
+            padding: 10px;
+            margin: 20px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <a href="/">Home</a> |
+        <a href="/post_dog_form">Post a Dog</a> |
+        <a href="/view_dogs">View Lost Dogs</a>
+    </div>
+    <hr>
+
+    <h1>Nearby Shelters</h1>
+
+    <input type="text" id="searchInput" onkeyup="searchShelters()" placeholder="Search by Shelter Name or City...">
+
+    <p id="noResultsMessage" style="display:none; font-size: 18px; color: #555; margin-top: 20px;">
+        No shelters found matching your search.
+    </p>
+
+    <div id="dogCardsContainer">
+        {% for post in posts %}
+        <div class="dog-card">
+            {% if post.dog_image_url %}
+                <img src="{{ post.dog_image_url }}" alt="Dog Picture">
+            {% endif %}
+            <h2 class="shelter-name">{{ post.shelter_name }}</h2>
+            <p><strong>Location:</strong> {{ post.location }}</p>
+            <p class="shelter-city"><strong>City:</strong> {{ post.city }}</p>
+            <p><strong>Contact:</strong> {{ post.contact_info }}</p>
+            <p><strong>Date Posted:</strong> {{ post.date_posted }}</p>
+            {% if post.shelter_logo_url %}
+                <img src="{{ post.shelter_logo_url }}" alt="Shelter Logo" width="100">
+                <p>Hours: {{ post.hours_of_operation }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <footer>
+        <p>© 2025 Lost Dog Finder. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function searchShelters() {
+            var input, filter, cards, name, city, i, visibleCount = 0;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            cards = document.getElementsByClassName("dog-card");
+
+            for (i = 0; i < cards.length; i++) {
+                name = cards[i].getElementsByClassName("shelter-name")[0];
+                city = cards[i].getElementsByClassName("shelter-city")[0];
+
+                nameText = name.textContent || name.innerText;
+                cityText = city.textContent || city.innerText;
+
+                if (nameText.toUpperCase().indexOf(filter) > -1 ||
+                    cityText.toUpperCase().indexOf(filter) > -1) {
+                    cards[i].style.display = "";
+                    visibleCount++;
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+
+            var noResults = document.getElementById("noResultsMessage");
+            if (visibleCount === 0) {
+                noResults.style.display = "block";
+            } else {
+                noResults.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>

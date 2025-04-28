@@ -1,13 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Lost Dog AI</title>
+    <meta charset="UTF-8">
+    <title>Lost Dog Finder</title>
+    <style>
+        body {
+            background-color: #f0f5fa;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-bar {
+            margin-top: 20px;
+        }
+        .nav-bar a {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            margin: 0 5px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .featured-card {
+            background-color: white;
+            margin: 40px auto;
+            padding: 20px;
+            width: 300px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+        .dog-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
-  <h2>Upload a Dog Image</h2>
-  <form action="/predict" method="post" enctype="multipart/form-data">
-    <input type="file" name="image" required>
-    <input type="submit" value="Predict">
-  </form>
+
+    <div class="nav-bar">
+        <a href="/post_dog_form">Post a Lost/Found Dog</a>
+        <a href="/view_dogs">View Lost/Found Dogs</a>
+        <a href="/view_shelters">Find Nearby Shelters</a>
+    </div>
+
+    <h1>Welcome to the Lost Dog Finder!</h1>
+
+    {% if featured_dog %}
+    <div class="featured-card">
+        <h2>Today's Featured Dog</h2>
+
+        {% if featured_dog.get('dog_image_url') %}
+            <img src="{{ featured_dog['dog_image_url'] }}" class="dog-image" alt="Featured Dog">
+        {% endif %}
+
+        <h3>{{ featured_dog['dog_name'] }}</h3>
+        <p><strong>Location:</strong> {{ featured_dog['location'] }}</p>
+        <p><a href="/view_dogs">View More Lost Dogs ➔</a></p>
+    </div>
+    {% else %}
+    <p>No featured dog at the moment.</p>
+    {% endif %}
+
 </body>
 </html>

@@ -1,0 +1,78 @@
+[
+    {
+        "dog_name": "Buddy",
+        "description": "Friendly Lab at shelter",
+        "location": "Springfield Rescue Center",
+        "contact_info": "555-1234",
+        "is_shelter_post": true,
+        "shelter_name": "Springfield Animal Shelter",
+        "shelter_logo_url": "https://example.com/logo.png",
+        "hours_of_operation": "Mon-Sat 9am-5pm"
+    },
+    {
+        "dog_name": "Zeke",
+        "description": "Brindled 60 LBS with White Paws and Chest",
+        "location": "Fayetteville, AR",
+        "contact_info": "479-715-7796",
+        "is_shelter_post": false,
+        "shelter_name": null,
+        "shelter_logo_url": null,
+        "hours_of_operation": null
+    },
+    {
+        "dog_name": "Zeke",
+        "description": "Brindled Dog with White Paws",
+        "location": "Fayetteville, AR",
+        "contact_info": "210-620-8277",
+        "dog_image_url": "/static/uploads/IMG_1193.jpeg",
+        "is_shelter_post": false,
+        "shelter_name": null,
+        "shelter_logo_url": null,
+        "hours_of_operation": null
+    },
+    {
+        "dog_name": "Ranger",
+        "breed": "Golden Retriever",
+        "description": "3-8ish Years Old",
+        "location": "Highlandnoles",
+        "contact_info": "479-457-8345",
+        "city": "Rogers",
+        "dog_image_url": "",
+        "dog_status": "Reunited",
+        "is_shelter_post": false,
+        "shelter_name": null,
+        "shelter_logo_url": null,
+        "hours_of_operation": null,
+        "date_posted": "2025-04-27"
+    },
+    {
+        "dog_name": "Unknown",
+        "breed": "N/A",
+        "description": "15-20 LBS, short hair",
+        "location": "Park",
+        "contact_info": "4792365390",
+        "city": "Bentonville",
+        "dog_image_url": "",
+        "dog_status": "Lost",
+        "is_shelter_post": false,
+        "shelter_name": null,
+        "shelter_logo_url": null,
+        "hours_of_operation": null,
+        "date_posted": "2025-04-28 01:34:02"
+    },
+    {
+        "dog_name": "Baloo",
+        "breed": "German Shephard",
+        "description": "Long, black and brown hair",
+        "location": "Park",
+        "contact_info": "479-349-9567",
+        "city": "Fayetteville",
+        "dog_status": "Lost",
+        "is_shelter_post": false,
+        "shelter_name": null,
+        "shelter_logo_url": null,
+        "hours_of_operation": null,
+        "date_posted": "2025-04-28 01:40:27",
+        "dog_image_file": "IMG_9587.jpeg"
+    }
+]
