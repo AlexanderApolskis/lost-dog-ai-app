@@ -1,13 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Prediction Result</title>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            background-color: #f0f5fa;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px;
+        }
+        .result-card {
+            background-color: white;
+            display: inline-block;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        .result-label {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .dog-image {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .back-link {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-  <h2>Prediction Result:</h2>
-  <p>{{ label }}</p>
-  <img src="{{ url_for('static', filename=image) }}" width="300">
-  <br><br>
-  <a href="/">Try another image</a>
+
+    <div class="result-card">
+        <h2>📷 Prediction Result</h2>
+        <p class="result-label">{{ label }}</p>
+        <img src="{{ url_for('static', filename=image) }}" alt="Uploaded Dog" class="dog-image"><br>
+        <a href="/" class="back-link">🔁 Try Another Image</a>
+    </div>
+
 </body>
 </html>

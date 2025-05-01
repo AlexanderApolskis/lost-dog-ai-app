@@ -1,38 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Post a Lost/Found Dog</title>
+    <title>Post a Dog</title>
 </head>
 <body>
+    <h2>Post a Lost or Found Dog</h2>
+    <form action="/post_dog" method="POST" enctype="multipart/form-data">
+        <label>Name:</label><br>
+        <input type="text" name="dog_name" required><br><br>
 
-    <h1>Post a Lost/Found Dog</h1>
+        <label>Breed:</label><br>
+        <input type="text" name="breed"><br><br>
 
-    <form action="/post_dog" method="post" enctype="multipart/form-data">
-        <input type="text" name="dog_name" placeholder="Dog Name" required><br><br>
-        <input type="text" name="breed" placeholder="Dog Breed (Optional)"><br><br>
-        <textarea name="description" placeholder="Description" required></textarea><br><br>
-        <input type="text" name="location" placeholder="Location (e.g. Park, Neighborhood)" required><br><br>
-        <input type="text" name="city" placeholder="City" required><br><br>
-        <input type="text" name="contact_info" placeholder="Your Contact Info" required><br><br>
+        <label>Description:</label><br>
+        <textarea name="description"></textarea><br><br>
 
-        <label>Upload a Photo of the Dog:</label><br>
-        <input type="file" name="dog_image_file" accept="image/*" capture="environment"><br><br>
+        <label>Location:</label><br>
+        <input type="text" name="location" required><br><br>
 
-        <label for="dog_status">Dog Status:</label><br>
+        <label>City:</label><br>
+        <input type="text" name="city"><br><br>
+
+        <label>Contact Info:</label><br>
+        <input type="text" name="contact_info" required><br><br>
+
+        <label>Status:</label><br>
         <select name="dog_status" required>
-            <option value="Lost">Lost</option>
-            <option value="Found">Found</option>
+            <option value="Lost" {% if prefill_status == 'Lost' %}selected{% endif %}>Lost</option>
+            <option value="Found" {% if prefill_status == 'Found' %}selected{% endif %}>Found</option>
         </select><br><br>
 
-        <h3>If Shelter Post:</h3>
-        <input type="checkbox" name="is_shelter_post" value="true"> Shelter Post<br><br>
-        <input type="text" name="shelter_name" placeholder="Shelter Name"><br><br>
-        <input type="text" name="shelter_logo_url" placeholder="Shelter Logo URL"><br><br>
-        <input type="text" name="hours_of_operation" placeholder="Shelter Hours"><br><br>
+        <label>Upload a Photo:</label><br>
+        <input type="file" name="dog_image_file" accept="image/*"><br><br>
 
-        <button type="submit">Post</button>
+        <button type="submit">Submit</button>
     </form>
-
 </body>
 </html>

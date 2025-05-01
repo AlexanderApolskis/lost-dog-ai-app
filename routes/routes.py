@@ -95,6 +95,28 @@ def view_dogs():
 
     return render_template('view_dogs.html', posts=posts)
 
+@routes.route('/view_lost_dogs')
+def view_lost_dogs():
+    if os.path.exists('dog_posts.json'):
+        with open('dog_posts.json', 'r') as f:
+            posts = json.load(f)
+    else:
+        posts = []
+
+    lost_dogs = [post for post in posts if post.get('dog_status') == 'Lost']
+    return render_template('view_dogs.html', posts=lost_dogs)
+
+@routes.route('/view_found_dogs')
+def view_found_dogs():
+    if os.path.exists('dog_posts.json'):
+        with open('dog_posts.json', 'r') as f:
+            posts = json.load(f)
+    else:
+        posts = []
+
+    found_or_reunited = [post for post in posts if post.get('dog_status') in ['Found', 'Reunited']]
+    return render_template('view_dogs.html', posts=found_or_reunited)
+
 @routes.route('/view_shelters')
 def view_shelters():
     if os.path.exists('dog_posts.json'):
@@ -128,6 +150,7 @@ def mark_reunited(dog_name):
         return "Dog marked as reunited! 🎉 <a href='/view_dogs'>Go back</a>"
     else:
         return "Dog not found or already reunited.", 404
+
 @routes.route('/success_stories')
 def success_stories():
     if os.path.exists('dog_posts.json'):
@@ -139,3 +162,11 @@ def success_stories():
     reunited_posts = [post for post in posts if post.get('dog_status') == 'Reunited']
 
     return render_template('success_stories.html', posts=reunited_posts)
+
+@routes.route('/post_lost_dog')
+def post_lost_dog():
+    return render_template('post_dog.html', prefill_status='Lost')
+
+@routes.route('/post_found_dog')
+def post_found_dog():
+    return render_template('post_dog.html', prefill_status='Found')

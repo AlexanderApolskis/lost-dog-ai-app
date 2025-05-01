@@ -1,21 +1,27 @@
-# Lost Dog AI App 🐶
+# 🐾 Lost Dog Finder AI App
 
-This web app helps match lost dogs to their owners using image recognition and machine learning.
+Welcome to the **Lost Dog Finder AI App** —  
+a powerful community platform designed to **help reunite lost dogs with their owners** using real-time uploads, AI tools, and beautiful UI. 📸🐶
 
-## Features
-- Upload dog images to compare with a trained model
-- Real-time image matching using a neural network
-- Flask-based web server with HTML templates
+---
 
-## Project Structure
-- `app.py` – main Flask app
-- `routes/` – routing logic
-- `templates/` – HTML pages
-- `static/` – CSS/images
-- `predict.py`, `train_model.py` – ML logic
-- `dog_match_model.h5` – model (not included in repo due to size)
+## ✨ Features
 
-## How to Run
-1. Install dependencies:
+- 📷 **Upload real photos** from your camera or computer
+- 🏷️ **Label dogs** as Lost, Found, or Reunited
+- 🆕 **"NEW" badge** for dogs posted within 24 hours
+- 🔍 **Search and filter** dogs by Name, City, Location, or Status
+- 🎉 **Mark dogs as Reunited** (with automatic status updates)
+- 🐾 **Success Stories page** for reunited dogs
+- 🎊 **Confetti animation** when visiting Success Stories
+- 📚 Mobile-optimized responsive design
+- 🔥 Ready for TikTok/social media viral sharing
+
+---
+
+## 🛠 How to Run Locally
+
+1. Clone the repository:
    ```bash
-   pip install -r requirements.txt
+   git clone https://github.com/your-username/lost-dog-ai-app.git
+   cd lost-dog-ai-app
