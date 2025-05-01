@@ -54,4 +54,31 @@ Built with **Flask**, **TensorFlow**, **OpenCV**, and **HTML/CSS**.
 ---
 
 ## 📂 Project Structure
+---
+
+## 📂 Project Structure
+
+```
+lost-dog-ai-app/
+├── app.py
+├── dog_match_model.h5
+├── dog_posts.json
+├── requirements.txt
+├── routes/
+│   └── routes.py
+├── templates/
+│   ├── index.html
+│   ├── post_dog.html
+│   ├── view_dogs.html
+│   ├── view_shelters.html
+│   └── result.html
+├── static/
+│   └── uploads/
+└── screenshots/
+    ├── homepage.png
+    ├── view_dogs.png
+    ├── shelters.png
+    ├── post_form.png
+    └── reunited.png
+```
 
