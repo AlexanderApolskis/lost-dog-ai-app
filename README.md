@@ -1,53 +1,57 @@
-# 🐾 Lost Dog Finder AI App
+# 🐶 Lost Dog Finder AI App
 
-Welcome to the **Lost Dog Finder AI App**, created by **E. Alexander Apolskis** for the **AFM - Personal Project**. This is a powerful, AI-powered community platform to help reunite lost dogs with their owners through real-time uploads, intelligent classification, and beautiful UI. 📸🐶
+## 📋 Project Description
+This Flask web app helps reunite lost dogs with their owners using AI image classification and community posts. Users can upload photos of lost/found dogs, receive AI predictions, and browse local shelter listings. Mobile-ready and ngrok-enabled for live demos.
 
----
-
-## ✨ Features
-
-- 📷 Upload photos of a dog and receive an AI-based prediction: **Lost** or **Found**
-- 🏷️ Label dogs as Lost, Found, or Reunited
-- 🆕 NEW badge for dogs posted within the last 24 hours
-- 🔍 Search/filter by name, city, or status
-- 🎉 Celebrate reunions via the "Mark as Reunited" feature
-- 🌟 View Success Stories of dogs that made it home
-- 📍 Find nearby shelters using smart filtering
-- 📱 Built for mobile, deployable via ngrok for live demo or phone uploads
+Built with **Flask**, **TensorFlow**, **OpenCV**, and **HTML/CSS**.
 
 ---
 
-## 🧠 AI Model Details
+## 🚀 Features
+- Upload dog photos for AI-based Lost/Found classification
+- Post missing or found dogs with contact info and photo
+- View current dog listings (Lost, Found, Reunited)
+- Mark dogs as “Reunited” with a success story flow
+- Display shelter-submitted dogs with hours & logos
+- Mobile-optimized for fast camera uploads and sharing
+- Public access via ngrok for live mobile demos
 
-- Built using **Keras** + **TensorFlow**
-- Binary classifier model: outputs a probability (0 to 1)
-- Image pre-processing:
-  - Resized to 224x224
-  - Normalized pixel values
-  - Converted to batch tensor
-- Prediction logic:
-
-```python
-prediction = model.predict(input_data)[0][0]
-if prediction > 0.5:
-    label = "Found dog"
-else:
-    label = "Lost dog"
 ---
 
-## 📸 Screenshots
+## 🛠️ How to Run
+1. Clone this repository to your computer:
 
-### Homepage - Featured Dog & AI Upload  
-![Homepage](screenshots/homepage.png)
+    ```bash
+    git clone https://github.com/YOUR_USERNAME/lost-dog-ai-app.git
+    ```
 
-### View Lost/Found Dogs  
-![View Dogs](screenshots/view_dogs.png)
+2. Move into the project folder:
 
-### Nearby Shelters Listing  
-![Shelters](screenshots/shelters.png)
+    ```bash
+    cd lost-dog-ai-app
+    ```
 
-### Post a Dog Form  
-![Post Form](screenshots/post_form.png)
+3. Set up a virtual environment and install required packages:
 
-### Reunited Dog Example  
-![Reunited](screenshots/reunited.png)
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # or venv\Scripts\activate on Windows
+    pip install -r requirements.txt
+    ```
+
+4. Launch the app locally:
+
+    ```bash
+    python app.py
+    ```
+
+5. (Optional) Make it public on mobile using:
+
+    ```bash
+    ngrok http 5000
+    ```
+
+---
+
+## 📂 Project Structure
+
