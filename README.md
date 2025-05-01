@@ -33,3 +33,21 @@ if prediction > 0.5:
     label = "Found dog"
 else:
     label = "Lost dog"
+---
+
+## 📸 Screenshots
+
+### Homepage - Featured Dog & AI Upload  
+![Homepage](screenshots/homepage.png)
+
+### View Lost/Found Dogs  
+![View Dogs](screenshots/view_dogs.png)
+
+### Nearby Shelters Listing  
+![Shelters](screenshots/shelters.png)
+
+### Post a Dog Form  
+![Post Form](screenshots/post_form.png)
+
+### Reunited Dog Example  
+![Reunited](screenshots/reunited.png)
