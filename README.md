@@ -26,6 +26,7 @@ Welcome to the **Lost Dog Finder AI App**, created by **E. Alexander Apolskis** 
   - Normalized pixel values
   - Converted to batch tensor
 - Prediction logic:
+
 ```python
 prediction = model.predict(input_data)[0][0]
 if prediction > 0.5:
