@@ -82,3 +82,59 @@ lost-dog-ai-app/
     └── reunited.png
 ```
 
+---
+
+## 📸 Example Screenshots
+
+### Homepage - Featured Dog & AI Upload  
+![Homepage](screenshots/homepage.png)
+
+### View Lost/Found Dogs  
+![View Dogs](screenshots/view_dogs.png)
+
+### Nearby Shelters Listing  
+![Shelters](screenshots/shelters.png)
+
+### Post a Dog Form  
+![Post Form](screenshots/post_form.png)
+
+### Reunited Dog Example  
+![Reunited](screenshots/reunited.png)
+
+---
+
+## 📚 Technologies Used
+- Python  
+- Flask  
+- TensorFlow / Keras  
+- OpenCV  
+- HTML / CSS  
+- JSON  
+- ngrok
+
+---
+
+## 🗓️ Project Timeline (5 Weeks)
+
+| Week | Dates            | What Was Completed                                    |
+|------|------------------|--------------------------------------------------------|
+| 1    | Mar 28 – Apr 4   | Defined project, repo setup, and proposal written     |
+| 2    | Apr 5 – Apr 11   | Trained AI model and tested image classification      |
+| 3    | Apr 12 – Apr 18  | Built Flask backend and homepage AI functionality     |
+| 4    | Apr 19 – Apr 25  | Finished forms, shelter system, and UI improvements   |
+| 5    | Apr 26 – May 1   | Finalized public access, README, and video prep       |
+
+---
+
+## 🔮 Future Plans
+- Add Petfinder API to sync real missing dog listings  
+- Display dogs/shelters on an interactive map  
+- Enable direct camera access and instant uploads  
+- Add facial vector comparison for lost dog matching  
+- Launch SMS/email alert system for pet sightings
+
+---
+
+## 👨‍💻 Developer
+- E. Alexander Apolskis
+
